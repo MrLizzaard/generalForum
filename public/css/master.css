@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  font-family: "Open Sans", "Noto Sans KR", sans-serif;
 }
 
 a {
@@ -20,18 +20,33 @@ ul {
 }
 
 .navbar {
-  background-color: coral;
+  background-color: lightcoral;
   width: 100%;
 }
 
-.container {
-  width: 1000px;
-  margin: 0 auto;
+.logo {
   position: relative;
+  width: 19%;
+}
+
+.logo a {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 32px;
+  font-weight: 800;
+  color: #f5f6fa;
+  line-height: 100%;
+  margin-left: 10px;
 }
 
 .menu {
+  position: absolute;
   width: 80%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   text-align: right;
 }
 
@@ -46,5 +61,34 @@ ul {
 .icon img {
   width: 45px;
   height: 45px;
+}
+
+.menu_item a {
+  color: #f5f6fa;
+  font-size: 18px;
+  margin-right: 50px;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.notice {
+  background-color: lightgray;
+  margin: 20px 0;
+  padding: 50px 50px;
+  border-radius: 10px;
+}
+
+.notice h1 {
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.notice p {
+  font-size: 18px;
+  margin: 15px 0;
 }
 /*# sourceMappingURL=master.css.map */
