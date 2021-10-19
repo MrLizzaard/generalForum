@@ -5,6 +5,23 @@
   </head>
   <body>
     <%- include('../partials/nav') %>
-    <div class="container">New</div>
+
+    <div class="container new">
+      <form action="/posts" method="post">
+        <div class="form-group">
+          <label for="title">제목</label>
+          <input type="text" id="title" name="title" value="" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="title">내용</label>
+          <textarea type="text" id="body" name="body" rows="5" class="form-control"></textarea>
+        </div>
+
+        <div>
+          <a class="btn" href="/posts">Back</a>
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
