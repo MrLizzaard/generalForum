@@ -19,7 +19,32 @@ ul {
   padding: 0;
 }
 
-nav {
+.navbar {
   background-color: coral;
+  width: 100%;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.menu {
+  width: 80%;
+  text-align: right;
+}
+
+.logo,
+.logo a,
+.icon,
+.menu,
+.menu_item {
+  display: inline-block;
+}
+
+.icon img {
+  width: 45px;
+  height: 45px;
 }
 /*# sourceMappingURL=master.css.map */
