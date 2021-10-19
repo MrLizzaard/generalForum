@@ -3,7 +3,7 @@ const router = express.Router();
 const contact = require("../models/contact");
 
 // Contacts - Index
-router.get("/contacts", (req, res) => {
+router.get("/", (req, res) => {
   contact.find({}, (err, contacts) => {
     if (err) return res.json(err);
     res.render("contacts/index", { contacts: contacts });
@@ -11,12 +11,12 @@ router.get("/contacts", (req, res) => {
 });
 
 // Contacts - New
-router.get("/contacts/new", (req, res) => {
+router.get("/new", (req, res) => {
   res.render("contacts/new");
 });
 
 // Contacts - Create
-router.post("/contacts", (req, res) => {
+router.post("/", (req, res) => {
   contact.create(req.body, (err, contact) => {
     if (err) return res.json(err);
     res.redirect("/contacts");
@@ -24,7 +24,7 @@ router.post("/contacts", (req, res) => {
 });
 
 // Contacts - Show
-router.get("/contacts/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   contact.findOne({ _id: req.params.id }, (err, contact) => {
     if (err) return res.json(err);
     res.render("contacts/show", { contact: contact });
@@ -32,7 +32,7 @@ router.get("/contacts/:id", (req, res) => {
 });
 
 // Contacts - Edit
-router.get("/contacts/:id/edit", (req, res) => {
+router.get("/:id/edit", (req, res) => {
   contact.findOne({ _id: req.params.id }, (err, contact) => {
     if (err) return res.json(err);
     res.render("contacts/edit", { contact: contact });
@@ -40,7 +40,7 @@ router.get("/contacts/:id/edit", (req, res) => {
 });
 
 // Contacts - Update
-router.put("/contacts/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   contact.findOneAndUpdate({ _id: req.params.id }, req.body, (err, contact) => {
     if (err) return res.json(err);
     res.redirect("/contacts/" + req.params.id);
@@ -48,7 +48,7 @@ router.put("/contacts/:id", (req, res) => {
 });
 
 // Contacts = Delete
-router.delete("/contacts/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   contact.deleteOne({ _id: req.params.id }, (err) => {
     if (err) return res.json(err);
     res.redirect("/contacts");
