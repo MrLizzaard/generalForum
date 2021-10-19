@@ -1,11 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
 const app = express();
 
 // mongoDB setting
+mongoose.set("useNewUrlParser", true);
+mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
+mongoose.set("useUnifiedTopology", true);
 mongoose.connect(process.env.MONGO_DB);
 let db = mongoose.connection;
+
 db.once("open", () => {
   console.log("DB connected");
 });
@@ -19,41 +25,11 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// DB schema
-const contactSchema = mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  email: { type: String },
-  phone: { type: String },
-});
-const contact = mongoose.model("contact", contactSchema);
+app.use(methodOverride("_method"));
 
 // Routes
-// Home
-app.get("/", (req, res) => {
-  res.redirect("/contacts");
-});
-
-// Contacts - Index
-app.get("/contacts", (req, res) => {
-  contact.find({}, (err, contacts) => {
-    if (err) return res.json(err);
-    res.render("contacts/index", { contacts: contacts });
-  });
-});
-
-// Contacts - New
-app.get("/contacts/new", (req, res) => {
-  res.render("contacts/new");
-});
-
-// Contacts - Create
-app.post("/contacts", (req, res) => {
-  contact.create(req.body, (err, contact) => {
-    if (err) return res.json(err);
-    res.redirect("/contacts");
-  });
-});
+app.use("/", require("./routes/home"));
+app.use("/contacts", require("./routes/contacts"));
 
 // Port setting
 const port = 3000;
