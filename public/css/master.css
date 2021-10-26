@@ -454,10 +454,6 @@ th {
   padding: 30px 20px;
 }
 
-.board .mainTitle {
-  margin: 0 0 20px 0;
-}
-
 .container-index .board-table {
   border-collapse: collapse;
   width: 100%;
@@ -554,10 +550,18 @@ th {
   margin: 10px 5px 0 0;
 }
 
+.users {
+  padding: 30px 20px;
+}
+
 .container {
   width: 1000px;
   margin: 0 auto;
   position: relative;
+}
+
+.container .mainTitle {
+  margin: 0 0 20px 0;
 }
 
 .notice {

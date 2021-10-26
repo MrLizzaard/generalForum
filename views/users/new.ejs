@@ -5,6 +5,50 @@
   </head>
   <body>
     <%- include('../partials/nav') %>
-    <div class="container">Template</div>
+    <div class="container users">
+      <h2 class="mainTitle">새 유저</h2>
+
+      <form action="/users" method="post">
+        <div class="form-group row">
+          <label for="username">Username*</label>
+          <div>
+            <input type="text" id="username" name="username" value="" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="name">Name*</label>
+          <div>
+            <input type="text" id="name" name="name" value="" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="email">Email</label>
+          <div>
+            <input type="text" id="email" name="email" value="" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="password">Password*</label>
+          <div>
+            <input type="password" id="password" name="password" value="" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="passwordConfirmation">Password Confirmation*</label>
+          <div>
+            <input type="password" id="passwordConfirmation" name="passwordConfirmation" value="" class="form-control" />
+          </div>
+        </div>
+        <p><small>*Required</small></p>
+
+        <div class="form-group">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 router.get("/:username", (req, res) => {
   User.findOne({ username: req.params.username }, (err, user) => {
     if (err) return res.json(err);
-    res.render("user/show", { user: user });
+    res.render("users/show", { user: user });
   });
 });
 
@@ -37,7 +37,7 @@ router.get("/:username", (req, res) => {
 router.get("/:username/edit", (req, res) => {
   User.findOne({ username: req.params.username }, (err, user) => {
     if (err) return res.json(err);
-    res.render("user/edit", { user: user });
+    res.render("users/edit", { user: user });
   });
 });
 

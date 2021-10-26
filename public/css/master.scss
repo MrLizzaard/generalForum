@@ -2,11 +2,16 @@
 @import "./font";
 @import "./nav";
 @import "./board";
+@import "./users";
 
 .container {
   width: 1000px;
   margin: 0 auto;
   position: relative;
+
+  .mainTitle {
+    margin: 0 0 20px 0;
+  }
 }
 
 .notice {
