@@ -5,7 +5,10 @@
   </head>
   <body>
     <%- include('../partials/nav') %>
-    <div class="container">
+
+    <div class="container container-show board">
+      <h2 class="mainTitle">자유게시판</h2>
+
       <div class="card">
         <h5 class="card-title"><%= post.title %></h5>
 
@@ -14,7 +17,7 @@
           <div class="post-info">
             <div><span>Created</span> : <span data-date-time="<%= post.createdAt %>"></span></div>
             <% if(post.updatedAt) { %>
-            <div><span>updatedAt</span> : <span><%= post.updatedAt %> </span></div>
+            <div><span>Updated</span> : <span data-date-time="<%= post.updatedAt %>"></span></div>
             <% } %>
           </div>
         </div>

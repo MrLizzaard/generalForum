@@ -1,0 +1,88 @@
+.board {
+  padding: 30px 20px;
+
+  .mainTitle {
+    margin: 0 0 20px 0;
+  }
+}
+
+.container-index {
+  .board-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  thead {
+    height: 40px;
+    border-top: 1px solid $colorLightGrey;
+    border-bottom: 1px solid $colorLightGrey;
+    background-color: $colorWhite;
+
+    .title {
+      width: 80%;
+    }
+  }
+
+  tbody {
+    .titleCol {
+      text-align: left;
+      padding-left: $borderTextPaddingLeft;
+    }
+
+    tr {
+      border-bottom: 1px solid $colorLightGrey;
+      height: 30px;
+    }
+  }
+}
+
+.container-show {
+  .card {
+    width: 100%;
+    border: 1px solid $colorLightGrey;
+    border-radius: 5px;
+
+    .card-title {
+      background-color: $colorWhite;
+      border-bottom: 1px solid $colorLightGrey;
+      padding: $trInnerPadding 0;
+      padding-left: $borderTextPaddingLeft;
+      font-size: $sizeLarge;
+    }
+
+    .post-body {
+      padding-left: $borderTextPaddingLeft;
+      display: inline-block;
+      width: 75%;
+    }
+    .post-info {
+      font-size: $sizeSmall;
+      display: inline-block;
+      border: 1px solid $colorLightGrey;
+      padding: $borderTextPaddingLeft;
+      margin: 5px;
+      border-radius: 5px;
+    }
+  }
+  form {
+    display: inline-block;
+  }
+}
+
+.container-new {
+}
+
+.container-edit {
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  padding: 5px 15px;
+  color: $colorWhite;
+  background-color: $colorBlue;
+  border-radius: 5px;
+  margin: 10px 5px 0 0;
+}

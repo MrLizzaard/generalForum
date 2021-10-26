@@ -14,7 +14,7 @@ const getTime = (dateObj) => {
   }
 };
 
-const convertDate = (dateObj) => {
+const convertDate = () => {
   document.querySelectorAll("span[data-date]").forEach((time) => {
     let dateString = time.dataset.date;
     if (dateString) {
@@ -24,7 +24,7 @@ const convertDate = (dateObj) => {
   });
 };
 
-const convertDateTime = (dateObj) => {
+const convertDateTime = () => {
   document.querySelectorAll("span[data-date-time]").forEach((time) => {
     let dateString = time.dataset.dateTime;
     if (dateString) {

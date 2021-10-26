@@ -6,13 +6,13 @@
   <body>
     <%- include('../partials/nav') %>
 
-    <div class="container board">
-      <h2>자유게시판</h2>
+    <div class="container container-index board">
+      <h2 class="mainTitle">자유게시판</h2>
 
       <table class="board-table">
         <thead>
           <tr>
-            <th scope="col">제목</th>
+            <th scope="col" class="title">제목</th>
             <th scope="col" class="date">작성날짜</th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@
 
           <% posts.forEach(post => { %>
           <tr>
-            <td>
+            <td class="titleCol">
               <a href="/posts/<%= post._id %>"><div><%= post.title %></div></a>
             </td>
             <td class="date">
