@@ -12,7 +12,7 @@
         <div class="row">
           <div class="post-body"><%= post.body %></div>
           <div class="post-info">
-            <div><span>Created</span> : <span> <%= post.createdAt %> </span></div>
+            <div><span>Created</span> : <span data-date-time="<%= post.createdAt %>"></span></div>
             <% if(post.updatedAt) { %>
             <div><span>updatedAt</span> : <span><%= post.updatedAt %> </span></div>
             <% } %>
@@ -24,7 +24,7 @@
         <a href="/posts" class="btn">Back</a>
         <a href="/posts/<%= post._id %>/edit" class="btn">Edit</a>
         <form action="/posts/<%= post._id %>?_method=delete" method="post">
-          <a href="/posts" onclick="confirm('Do you want to delete this?')?this.paraentElement.submit():null;" class="btn">Delete</a>
+          <a href="javascript:void(0)" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;" class="btn">Delete</a>
         </form>
       </div>
     </div>

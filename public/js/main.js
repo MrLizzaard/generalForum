@@ -1,37 +1,38 @@
-$(function () {
-  function get2digits(num) {
-    return ("0" + num).slice(-2);
+const getDate = (dateObj) => {
+  if (dateObj instanceof Date) {
+    return `${dateObj.getFullYear()}-${dateObj.getMonth() < 10 ? `0${dateObj.getMonth()}` : `${dateObj.getMonth()}`}-${
+      dateObj.getDate() < 10 ? `0${dateObj.getDate()}` : `${dateObj.getDate()}`
+    }`;
   }
+};
 
-  function getDate(dateObj) {
-    if (dateObj instanceof Date) return dateObj.getFullYear() + "-" + get2digits(dateObj.getMonth() + 1) + "-" + get2digits(dateObj.getDate());
+const getTime = (dateObj) => {
+  if (dateObj instanceof Date) {
+    return `${dateObj.getHours() < 10 ? `0${dateObj.getHours}` : `${dateObj.getHours()}`}:${
+      dateObj.getMinutes() < 10 ? `0${dateObj.getMinutes()}` : `${dateObj.getMinutes()}`
+    }:${dateObj.getSeconds() < 10 ? `0${dateObj.getSeconds()}` : `${dateObj.getSeconds()}`}`;
   }
+};
 
-  function getTime(dateObj) {
-    if (dateObj instanceof Date)
-      return get2digits(dateObj.getHours()) + ":" + get2digits(dateObj.getMinutes()) + ":" + get2digits(dateObj.getSeconds());
-  }
+const convertDate = (dateObj) => {
+  document.querySelectorAll("span[data-date]").forEach((time) => {
+    let dateString = time.dataset.date;
+    if (dateString) {
+      let date = new Date(dateString);
+      time.innerHTML = `${getDate(date)}`;
+    }
+  });
+};
 
-  function convertDate() {
-    $("[data-date]").each(function (index, element) {
-      var dateString = $(element).data("date");
-      if (dateString) {
-        var date = new Date(dateString);
-        $(element).html(getDate(date));
-      }
-    });
-  }
+const convertDateTime = (dateObj) => {
+  document.querySelectorAll("span[data-date-time]").forEach((time) => {
+    let dateString = time.dataset.dateTime;
+    if (dateString) {
+      let date = new Date(dateString);
+      time.innerHTML = `${getDate(date) + " " + getTime(date)}`;
+    }
+  });
+};
 
-  function convertDateTime() {
-    $("[data-date-time]").each(function (index, element) {
-      var dateString = $(element).data("date-time");
-      if (dateString) {
-        var date = new Date(dateString);
-        $(element).html(getDate(date) + " " + getTime(date));
-      }
-    });
-  }
-
-  convertDate();
-  convertDateTime();
-});
+convertDate();
+convertDateTime();
