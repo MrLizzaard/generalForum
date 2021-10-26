@@ -52,17 +52,27 @@
       font-size: $sizeLarge;
     }
 
+    .row {
+      position: relative;
+      min-height: 8rem;
+    }
+
     .post-body {
+      margin: 10px 0 5px 0;
       padding-left: $borderTextPaddingLeft;
       display: inline-block;
-      width: 75%;
+      width: 72%;
     }
+
     .post-info {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 24%;
       font-size: $sizeSmall;
       display: inline-block;
       border: 1px solid $colorLightGrey;
       padding: $borderTextPaddingLeft;
-      margin: 5px;
       border-radius: 5px;
     }
   }
@@ -71,10 +81,24 @@
   }
 }
 
-.container-new {
-}
-
 .container-edit {
+  .form-group {
+    label {
+      display: block;
+      font-size: $sizeRegular;
+      padding: $trInnerPadding * 2 0;
+    }
+
+    input {
+      width: 100%;
+      padding: $trInnerPadding;
+    }
+
+    textarea {
+      width: 100%;
+      height: 10rem;
+    }
+  }
 }
 
 .btn {
