@@ -76,11 +76,12 @@ const passwordRegexErrorMessage = "Should be minimum 8 characters of alphabet an
 userSchema.path("password").validate(function (v) {
   var user = this;
 
-  // create user //
+  // create user
   if (user.isNew) {
     if (!user.passwordConfirmation) {
       user.invalidate("passwordConfirmation", "Password Confirmation is required.");
     }
+
     if (!passwordRegex.test(user.password)) {
       user.invalidate("password", passwordRegexErrorMessage);
     } else if (user.password !== user.passwordConfirmation) {
@@ -88,7 +89,7 @@ userSchema.path("password").validate(function (v) {
     }
   }
 
-  // update user //
+  // update user
   if (!user.isNew) {
     if (!user.currentPassword) {
       user.invalidate("currentPassword", "Current Password is required!");
@@ -105,8 +106,8 @@ userSchema.path("password").validate(function (v) {
 });
 
 // hash password
-userSchema.pre("save", (next) => {
-  let user = this;
+userSchema.pre("save", function (next) {
+  var user = this;
   if (!user.isModified("password")) {
     return next();
   } else {
@@ -115,9 +116,9 @@ userSchema.pre("save", (next) => {
   }
 });
 
-// model method
-userSchema.methods.authenticate = (password) => {
-  let user = this;
+// model methods
+userSchema.methods.authenticate = function (password) {
+  var user = this;
   return bcrypt.compareSync(password, user.password);
 };
 

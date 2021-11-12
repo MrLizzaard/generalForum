@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
   User.create(req.body, (err, user) => {
     if (err) {
       req.flash("user", req.body);
-      req.flash("error", parseError(err));
+      req.flash("errors", parseError(err));
       return res.redirect("/users/new");
     }
     res.redirect("/users");
@@ -50,7 +50,7 @@ router.get("/:username/edit", (req, res) => {
       res.render("users/edit", { username: req.params.username, user: user, errors: errors });
     });
   } else {
-    res.render("user/edit", { username: req.params.username, user: user, errors: errors });
+    res.render("users/edit", { username: req.params.username, user: user, errors: errors });
   }
 });
 
@@ -68,7 +68,11 @@ router.put("/:username", (req, res, next) => {
       }
 
       user.save((err, user) => {
-        if (err) return res.json(err);
+        if (err) {
+          req.flash("user", req.body);
+          req.flash("errors", parseError(err));
+          return res.redirect("/users/" + req.params.username + "/edit");
+        }
         res.redirect("/users/" + user.username);
       });
     });
@@ -85,18 +89,16 @@ router.delete("/:username", (req, res) => {
 module.exports = router;
 
 function parseError(errors) {
-  let parsed = {};
-
-  if (errors.name === "ValidationError") {
-    for (let name in errors.errors) {
-      let validationError = errors.errors[name];
+  var parsed = {};
+  if (errors.name == "ValidationError") {
+    for (var name in errors.errors) {
+      var validationError = errors.errors[name];
       parsed[name] = { message: validationError.message };
     }
-  } else if (errors.code === "11000" && errors.errmsg.indexOf("username") > 0) {
-    parsed.username = { message: "this username already exists!" };
+  } else if (errors.code == "11000" && errors.errmsg.indexOf("username") > 0) {
+    parsed.username = { message: "This username already exists!" };
   } else {
     parsed.unhandled = JSON.stringify(errors);
   }
-
   return parsed;
 }
