@@ -1,32 +1,3 @@
-@import "./reset";
-@import "./font";
-@import "./nav";
-@import "./board";
-@import "./users";
-
-.container {
-  width: 1000px;
-  margin: 0 auto;
-  position: relative;
-
-  .mainTitle {
-    margin: 0 0 20px 0;
-  }
-}
-
-.notice {
-  background-color: lightgray;
-  margin: 20px 0;
-  padding: 50px 50px;
-  border-radius: 10px;
-
-  h1 {
-    font-weight: $weightBold;
-    font-size: $sizeLarger;
-  }
-
-  p {
-    font-size: $sizeRegular;
-    margin: 15px 0;
-  }
+body {
+  font-family: "Open Sans", sans-serif;
 }

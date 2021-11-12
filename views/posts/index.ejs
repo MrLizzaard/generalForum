@@ -6,13 +6,13 @@
   <body>
     <%- include('../partials/nav') %>
 
-    <div class="container container-index board">
-      <h2 class="mainTitle">자유게시판</h2>
+    <div class="container mb-3">
+      <h2 class="mb-3">자유게시판</h2>
 
-      <table class="board-table">
-        <thead>
+      <table class="board-table table table-sm border-bottom">
+        <thead class="thead-light">
           <tr>
-            <th scope="col" class="title">제목</th>
+            <th scope="col">제목</th>
             <th scope="col" class="date">작성날짜</th>
           </tr>
         </thead>
@@ -20,16 +20,12 @@
         <tbody>
           <% if(posts == null || posts.length == 0){ %>
           <tr>
-            <td colspan="2">There is no data to show</td>
+            <td colspan="2">There is no data to show :(</td>
           </tr>
-          <% } %>
-
-          <!-- -->
-
-          <% posts.forEach(post => { %>
+          <% } %> <% posts.forEach(post => { %>
           <tr>
-            <td class="titleCol">
-              <a href="/posts/<%= post._id %>"><div><%= post.title %></div></a>
+            <td>
+              <a href="/posts/<%= post._id %>"><div class="ellipsis"><%= post.title %></div></a>
             </td>
             <td class="date">
               <span data-date="<%= post.createdAt %>"></span>
@@ -40,7 +36,7 @@
       </table>
 
       <div>
-        <a href="/posts/new" class="btn">New</a>
+        <a class="btn btn-primary" href="/posts/new">New</a>
       </div>
     </div>
   </body>

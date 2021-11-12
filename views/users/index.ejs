@@ -5,14 +5,15 @@
   </head>
   <body>
     <%- include('../partials/nav') %>
-    <div class="container users">
-      <h2 class="mainTitle">유저</h2>
 
-      <ul class="user-list">
+    <div class="container mb-3">
+      <h3 class="mb-3">Users</h3>
+
+      <ul class="list-group">
         <% if(users == null || users.length == 0){ %>
-        <li class="user-item">There is no users yet.</li>
-        <% } %> <% users.forEach(user => { %>
-        <li class="user-item">
+        <li class="list-group-item">There is no user yet.</li>
+        <% } %> <% users.forEach(function(user) { %>
+        <li class="list-group-item">
           <a href="/users/<%= user.username %>"><%= user.username %></a>
         </li>
         <% }) %>

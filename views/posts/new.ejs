@@ -6,8 +6,14 @@
   <body>
     <%- include('../partials/nav') %>
 
-    <div class="container container-edit board">
-      <h2 class="mainTitle">자유게시판</h2>
+    <div class="container mb-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-1 pl-2 pr-2">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/posts">자유게시판</a></li>
+          <li class="breadcrumb-item active" aria-current="page">새 글</li>
+        </ol>
+      </nav>
 
       <form action="/posts" method="post">
         <div class="form-group">
@@ -16,13 +22,13 @@
         </div>
 
         <div class="form-group">
-          <label for="title">내용</label>
-          <textarea type="text" id="body" name="body" rows="5" class="form-control"></textarea>
+          <label for="body">내용</label>
+          <textarea id="body" name="body" rows="5" class="form-control"></textarea>
         </div>
 
         <div>
-          <a class="btn" href="/posts">Back</a>
-          <button type="submit" class="btn">Submit</button>
+          <a class="btn btn-primary" href="/posts">Back</a>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>
