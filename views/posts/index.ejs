@@ -13,6 +13,7 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">제목</th>
+            <th scope="col" class="author">글쓴이</th>
             <th scope="col" class="date">작성날짜</th>
           </tr>
         </thead>
@@ -22,10 +23,15 @@
           <tr>
             <td colspan="2">There is no data to show :(</td>
           </tr>
-          <% } %> <% posts.forEach(post => { %>
+          <% } %>
+          <!-- 구분선 -->
+          <% posts.forEach(post => { %>
           <tr>
             <td>
               <a href="/posts/<%= post._id %>"><div class="ellipsis"><%= post.title %></div></a>
+            </td>
+            <td class="author">
+              <div class="ellipsis"><%= post.author ? post.author.username : "" %></div>
             </td>
             <td class="date">
               <span data-date="<%= post.createdAt %>"></span>
