@@ -25,12 +25,12 @@ app.use(methodOverride("_method"));
 app.use(flash());
 app.use(session({ secret: "MySecret", resave: true, saveUninitialized: true }));
 
-// passport
+// Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Custom Middlewares
-app.use((req, res, next) => {
+app.use(function (req, res, next) {
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.currentUser = req.user;
   next();

@@ -11,9 +11,9 @@ router.get("/about", (req, res) => {
 
 // Login
 
-router.get("/login", (req, res) => {
-  let username = req.flash("username")[0];
-  let errors = req.flash("errors")[0] || {};
+router.get("/login", function (req, res) {
+  var username = req.flash("username")[0];
+  var errors = req.flash("errors")[0] || {};
   res.render("home/login", {
     username: username,
     errors: errors,
@@ -23,9 +23,9 @@ router.get("/login", (req, res) => {
 // Post Login
 router.post(
   "/login",
-  (req, res, next) => {
-    let errors = {};
-    let isValid = true;
+  function (req, res, next) {
+    var errors = {};
+    var isValid = true;
 
     if (!req.body.username) {
       isValid = false;
@@ -50,8 +50,9 @@ router.post(
 );
 
 // Logout
-router.get("/logout", (req, res) => {
+router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });
+
 module.exports = router;
