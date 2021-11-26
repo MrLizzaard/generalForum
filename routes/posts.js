@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 
 // New
 
-router.get("/new", (req, res) => {
+router.get("/new", util.isLoggedin, (req, res) => {
   let post = req.flash("post")[0] || {};
   let errors = req.flash("errors")[0] || {};
 
@@ -25,7 +25,7 @@ router.get("/new", (req, res) => {
 });
 
 // Create
-router.post("/", (req, res) => {
+router.post("/", util.isLoggedin, (req, res) => {
   req.body.author = req.user._id;
   Post.create(req.body, (err, post) => {
     if (err) {
@@ -50,23 +50,23 @@ router.get("/:id", (req, res) => {
 
 // Edit
 
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", util.isLoggedin, checkPermission, (req, res) => {
   let post = req.flash("post")[0];
   let errors = req.flash("errors")[0] || {};
   if (!post) {
     Post.findOne({ _id: req.params.id }, (err, post) => {
       if (err) return res.json(err);
-      res.render("posts/edit", { post: post });
+      res.render("posts/edit", { post: post, errors: errors });
     });
   } else {
     post._id = req.params.id;
-    res.render("post/edit", { post: post, errors: errors });
+    res.render("posts/edit", { post: post, errors: errors });
   }
 });
 
 // Update
 
-router.put("/:id", (req, res) => {
+router.put("/:id", util.isLoggedin, checkPermission, (req, res) => {
   req.body.updatedAt = Date.now();
   Post.findOneAndUpdate({ _id: req.params.id }, req.body, { runValidators: true }, (err, post) => {
     if (err) {
@@ -80,7 +80,7 @@ router.put("/:id", (req, res) => {
 
 // Delete
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", util.isLoggedin, checkPermission, (req, res) => {
   Post.deleteOne({ _id: req.params.id }, (err) => {
     if (err) return res.json(err);
     res.redirect("/posts");
@@ -88,3 +88,12 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+
+function checkPermission(req, res, next) {
+  Post.findOne({ _id: req.params.id }, function (err, post) {
+    if (err) return res.json(err);
+    if (post.author != req.user.id) return util.noPermission(req, res);
+
+    next();
+  });
+}
